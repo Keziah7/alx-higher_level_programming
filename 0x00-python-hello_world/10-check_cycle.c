@@ -1,21 +1,28 @@
 #include "lists.h"
 /**
- * check_cycle - checks for cycle in a linked list
- * @list: linked list to check
- * Return: 1 if cycle, 0 if not
+ * check_cycle - checks if listint_t list loops on itself
+ * @list: list to check for loops
+ * Return: 1 if loops, 0 if not
  */
 int check_cycle(listint_t *list)
 {
-listint_t *temp1 = NULL, *temp2 = NULL;
-temp1 = list;
-temp2 = list;
-while (list)
+listint_t *ptr, *end;
+if (list == NULL)
+return (0);
+ptr = list;
+end = ptr->next;
+if (end == NULL)
+return (0);
+while (1)
 {
-temp2 = temp2->next;
-if (!temp1 || !temp2)
-return (0);
-if (temp2 == temp1)
+if (end == ptr)
 return (1);
-}
+end = end->next;
+if (end == NULL)
 return (0);
+end = end->next;
+if (end == NULL)
+return (0);
+ptr = ptr->next;
+}
 }
