@@ -1,21 +1,21 @@
 #!/usr/bin/python3
-"""
-Pascal's Triangle Module
+"""Pascal's triangle
 """
 
 
 def pascal_triangle(n):
-    """calculate pascal
-    args:
-        n: value
-    return
-        list
-    """
-    my_list = []
+    """returns a list of intergers representing the
+    pascal's triangle of n"""
     if n <= 0:
-        return my_list
+        return []
+    a = [[] for i in range(n)]
     for i in range(n):
-        num = 11**i
-        li = [int(n) for n in str(num)]
-        my_list.append(li)
-    return my_list
+        for j in range(i + 1):
+            if j < i:
+                if j == 0:
+                    a[i].append(1)
+                else:
+                    a[i].append(a[i - 1][j] + a[i - 1][j - 1])
+            elif j == i:
+                a[i].append(1)
+    return a
